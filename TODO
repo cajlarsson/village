@@ -1,0 +1,9 @@
+implement:
+
+src/game/tile.py the "bucket"
+
+src/game/object.py only implement ID for now
+
+src/graphics/dirty_sprite.py repaint when needed, inform tile of
+   viewing 
+

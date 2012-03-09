@@ -17,17 +17,12 @@ last = time.time()
 
 clock = pygame.time.Clock()
 while pygame.event.poll().type != KEYDOWN:
-
-
     for x in range(width ):
        for y in range(height):    
            screen.blit(bild,[side * x , side * y] )
-
     pygame.display.flip()
     clock.tick()
-    
     print(clock.get_fps())
-    
     time.sleep(0.02)
 
 
