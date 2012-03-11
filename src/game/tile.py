@@ -5,14 +5,14 @@ class tile:
         self.bottomsprite = bottom
         self.topsprite = top
 
-    def set_topsprite(sprite):
+    def set_topsprite(self, sprite):
         self.topsprite = sprite
         self.dirty = 1
 
     def get_topsprite(self):
         return self.topsprite
 
-    def set_bottomsprite(sprite):
+    def set_bottomsprite(self, sprite):
         self.bottomsprite = sprite
         self.dirty = 1
 
