@@ -15,7 +15,7 @@ screen = pygame.display.set_mode([screen_width * side, screen_height * side])
 game_width = 100
 game_height = 100
 
-pos = 35
+start_pos = 224 
 
 # Initialize sprites
 bild1 = pygame.image.load("../res/test-alien.png")
@@ -26,7 +26,7 @@ bild2 = pygame.Surface.convert_alpha(bild2)
 # Create world
 tiles = []
 for i in range(game_width*game_height):
-    if i == pos:
+    if i == start_pos:
         tiles.append(tile(bild2,bild1))
     else:
         tiles.append(tile(bild2))
@@ -54,8 +54,66 @@ def draw(screen,corners=((0,0),(screen_width,screen_height))):
     pygame.display.flip()
 
 
-while (pygame.event.poll().type != KEYDOWN):
-    draw(screen)
-    #draw(screen,((20,0), (40,4)))
-    #print(clock.get_fps())
-    clock.tick(4)
+def draw_all(screen,corners=((0,0),(screen_width,screen_height))):
+    """ Draws all tiles in the rectangle given by corners (upper left
+    corner, bottom right corner) regardless if they're dirty or not, and sets
+    all tiles to clean"""
+    x1 = corners[0][0]
+    y1 = corners[0][1]
+    x2 = corners[1][0]
+    y2 = corners[1][1]
+
+    xscreen = 0
+    yscreen = 0
+
+    for y in range(y1,y2):
+        for x in range(x1,x2):    
+            tiles[y*(game_width)+x].blit(screen,[side*xscreen, side*yscreen],
+                                         True)
+            xscreen += 1
+        xscreen = 0
+        yscreen += 1
+
+    pygame.display.flip()
+
+
+def run():
+    xpos = 0
+    ypos = 0
+    pos = start_pos
+    acc = 0
+
+    draw_all(screen)
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT or (event.type == KEYDOWN and event.key ==
+                                      K_ESCAPE):
+                return
+
+        keystate = pygame.key.get_pressed()
+        if keystate[K_LEFT]:
+            if xpos > 0:
+                xpos -= 1
+                draw_all(screen,((xpos,ypos),(xpos+screen_width,ypos+screen_height)))
+
+        if keystate[K_RIGHT]:
+            if xpos < (game_width - screen_width):
+                xpos += 1
+                draw_all(screen,((xpos,ypos),(xpos+screen_width,ypos+screen_height)))
+
+        if keystate[K_UP]:
+            if ypos > 0:
+                ypos -= 1
+                draw_all(screen,((xpos,ypos),(xpos+screen_width,ypos+screen_height)))
+
+        if keystate[K_DOWN]:
+            if ypos < (game_height - screen_height):
+                ypos += 1
+                draw_all(screen,((xpos,ypos),(xpos+screen_width,ypos+screen_height)))
+
+        draw(screen,((xpos,ypos),(xpos+screen_width,ypos+screen_height)))
+        print(clock.get_fps())
+        clock.tick()
+
+
+run()
