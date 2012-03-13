@@ -40,18 +40,21 @@ def draw(screen,corners=((0,0),(screen_width,screen_height))):
     y1 = corners[0][1]
     x2 = corners[1][0]
     y2 = corners[1][1]
+    
+    changed = False
 
     xscreen = 0
     yscreen = 0
 
     for y in range(y1,y2):
         for x in range(x1,x2):    
-            tiles[y*(game_width)+x].blit(screen,[side*xscreen, side*yscreen])
+            changed = tiles[y*(game_width)+x].blit(screen,[side*xscreen, side*yscreen]) or changed
             xscreen += 1
         xscreen = 0
         yscreen += 1
 
-    pygame.display.flip()
+    if changed:
+        pygame.display.flip()
 
 
 def draw_all(screen,corners=((0,0),(screen_width,screen_height))):
@@ -63,25 +66,25 @@ def draw_all(screen,corners=((0,0),(screen_width,screen_height))):
     x2 = corners[1][0]
     y2 = corners[1][1]
 
+    changed = False
+
     xscreen = 0
     yscreen = 0
 
     for y in range(y1,y2):
         for x in range(x1,x2):    
-            tiles[y*(game_width)+x].blit(screen,[side*xscreen, side*yscreen],
-                                         True)
+            changed = tiles[y*(game_width)+x].blit(screen,[side*xscreen, side*yscreen], True) or changed
             xscreen += 1
         xscreen = 0
         yscreen += 1
 
-    pygame.display.flip()
+    if changed:
+        pygame.display.flip()
 
 
 def run():
     xpos = 0
     ypos = 0
-    pos = start_pos
-    acc = 0
 
     draw_all(screen)
     while True:
@@ -113,7 +116,7 @@ def run():
 
         draw(screen,((xpos,ypos),(xpos+screen_width,ypos+screen_height)))
         print(clock.get_fps())
-        clock.tick()
+        clock.tick(100)
 
 
 run()

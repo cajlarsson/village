@@ -1,7 +1,7 @@
 class tile:
 
     def __init__(self, bottom=None, top=None):
-        self.dirty = 0
+        self.dirty = 1
         self.bottomsprite = bottom
         self.topsprite = top
 
@@ -20,16 +20,12 @@ class tile:
         return self.bottomsprite
 
     def blit(self, screen, coords, all=False):
-        if all:
+        if all or self.dirty:
             if self.bottomsprite != None:
                 screen.blit(self.bottomsprite,coords)
             if self.topsprite != None:
                 screen.blit(self.topsprite,coords)
             self.dirty = 0
-
-        elif self.dirty:
-            if self.bottomsprite != None:
-                screen.blit(self.bottomsprite,coords)
-            if self.topsprite != None:
-                screen.blit(self.topsprite,coords)
-            self.dirty = 0
+            return True
+        else:
+            return False
