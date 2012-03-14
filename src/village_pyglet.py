@@ -31,11 +31,15 @@ player = pyglet.sprite.Sprite(img=player_image,x=0,y=100,batch=main_batch)
 
 fps_display = pyglet.clock.ClockDisplay(color=(1,0,0,1))
 
+text = pyglet.text.Label(text="Village", x=400, y=545,
+                         anchor_x='center')
+
 @window.event
 def on_draw():
     clk.tick()
     window.clear()
     main_batch.draw()
+    text.draw()
     fps_display.draw()
 
 
