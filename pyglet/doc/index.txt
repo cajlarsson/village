@@ -1,0 +1,18 @@
+pyglet Documentation Index
+--------------------------
+
+pyglet documentation:
+
+  * `Programming Guide <programming_guide/index.html>`_
+  * `API Reference <api/index.html>`_
+
+..
+
+  * `Migrating to pyglet 1.1 <programming_guide/appendix_migrating_to_pyglet_1_1.html>`_
+
+Related documentation:
+
+  * `OpenGL Programming Guide <http://www.glprogramming.com/red/>`_
+  * `OpenGL Reference Pages <http://opengl.org/sdk/docs/man/>`_
+  * `ctypes Reference <http://docs.python.org/lib/module-ctypes.html>`_
+  * `Python Documentation <http://docs.python.org/>`_

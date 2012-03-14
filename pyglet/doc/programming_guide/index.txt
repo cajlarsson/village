@@ -1,0 +1,40 @@
+========================
+pyglet Programming Guide
+========================
+:breadcrumb: Programming Guide
+
+The pyglet Programming Guide provides in-depth documentation for writing
+applications that use pyglet.  Many topics described here reference the pyglet
+API reference, provided separately.
+
+If this is your first time reading about pyglet, we suggest you start at
+`Writing a pyglet application`.
+
+.. contents:: Sections
+    :depth: 1
+
+.. contents:: Table of contents
+    :depth: 3
+
+.. include:: installation.txt
+.. include:: quickstart.txt
+.. include:: context.txt
+.. include:: gl.txt
+.. include:: graphics.txt
+.. include:: windowing.txt
+.. include:: eventloop.txt
+.. include:: events.txt
+.. include:: keyboard.txt
+.. include:: mouse.txt
+.. include:: input.txt
+.. include:: time.txt
+.. include:: text.txt
+.. include:: image.txt
+.. include:: media.txt
+.. include:: resources.txt
+.. include:: debug.txt
+.. include:: features1.1.txt
+
+..
+    .. include:: advanced.txt
+    .. include:: distribution.txt
