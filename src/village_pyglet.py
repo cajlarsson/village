@@ -1,4 +1,7 @@
 import pyglet
+from pyglet.window import key
+
+clk = pyglet.clock.Clock()
 
 screen_width = 800
 screen_height = 600
@@ -29,20 +32,20 @@ player = pyglet.sprite.Sprite(img=player_image,x=400,y=300,batch=main_batch)
 @window.event
 def on_draw():
 	window.clear()
-	
 	main_batch.draw()
 
 
 @window.event
 def on_key_press(symbol,modifier):
-	if symbol == 65361 and player.x > 0:
+	if symbol == key.LEFT and player.x > 0:
 		player.set_position(player.x-20,player.y)
-	if symbol == 65362 and player.y < 580:
+	if symbol == key.UP and player.y < 580:
 		player.set_position(player.x,player.y+20)
-	if symbol == 65363 and player.x < 780:
+	if symbol == key.RIGHT and player.x < 780:
 		player.set_position(player.x+20,player.y)
-	if symbol == 65364 and player.y > 0:
+	if symbol == key.DOWN and player.y > 0:
 		player.set_position(player.x,player.y-20)
+
 
 if __name__ == '__main__':
 	pyglet.app.run()
